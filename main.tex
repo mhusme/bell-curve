@@ -1,0 +1,46 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Welcome to Overleaf --- just edit your LaTeX on the left,
+% and we'll compile it for you on the right. If you open the
+% 'Share' menu, you can invite other users to edit at the same
+% time. See www.overleaf.com/learn for more info. Enjoy!
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[border=10pt]{standalone}
+%%%<
+\usepackage{verbatim}
+%%%>
+\usepackage{pgfplots}
+\pgfplotsset{width=7cm,compat=1.8}
+\begin{comment}
+:Title: Gaussian Function aka Bell curve
+:Tags: 2D;Functions;PGFmath;Mathematics
+:Author: Jake
+:Slug: bell-curve
+
+You can use pgfplots to plot your own functions. There's no standard macro
+for it, but the function isn't too complicated and can be added as a
+pgfmath function.
+
+This code was written by Jake on TeX.SE.
+\end{comment}
+\pgfmathdeclarefunction{gauss}{2}{%
+  \pgfmathparse{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))}%
+}
+\begin{document}
+\begin{tikzpicture}
+\begin{axis}[every axis plot post/.append style={
+  mark=none,domain=-2:3,samples=50,smooth},
+    % All plots: from -2:2, 50 samples, smooth, no marks
+  axis x line*=bottom, % no box around the plot, only x and y axis
+  axis y line*=left, % the * suppresses the arrow tips
+  ylabel={Probability},
+  xlabel={Message-box access},
+  yticklabels={,,},
+  xticklabels={,,},
+  enlargelimits=upper] % extend the axes a bit to the right and top
+  \addplot[draw=black, fill=black, fill opacity=0.5, draw opacity =0.5] {gauss(0.5,0.70)};
+  \addplot[draw=black, fill=black, fill opacity=0.5, draw opacity =0.5] {gauss(0.65,0.70)};
+\end{axis}
+\end{tikzpicture}
+\end{document}
