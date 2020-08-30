@@ -39,8 +39,11 @@ This code was written by Jake on TeX.SE.
   yticklabels={,,},
   xticklabels={,,},
   enlargelimits=upper] % extend the axes a bit to the right and top
-  \addplot[draw=black, fill=black, fill opacity=0.5, draw opacity =0.5] {gauss(0.5,0.70)};
-  \addplot[draw=black, fill=black, fill opacity=0.5, draw opacity =0.5] {gauss(0.65,0.70)};
+  \addplot[draw=black, fill=black, fill opacity=0.2, draw opacity =0.2] {gauss(0.5,0.70)};
+  \addlegendentry{$D1$}
+  
+  \addplot[draw=black, fill=black, fill opacity=0.7, draw opacity =0.7] {gauss(0.7,0.70)};
+  \addlegendentry{$D2$}
 \end{axis}
 \end{tikzpicture}
 \end{document}
